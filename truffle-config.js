@@ -23,6 +23,8 @@
  */
 
 const HDWalletProvider = require('truffle-hdwallet-provider');
+
+//leaving infuraKey and mnemonics blanks for security purposes
 const infuraKey = "";
 
 // const fs = require('fs');
@@ -65,6 +67,8 @@ module.exports = {
 
     // Useful for deploying to a public network.
     // NB: It's important to wrap the provider as a function.
+
+    //Increased the timeoutBlocks to avoid timeout error while migrating
     rinkeby: {
       provider: () => new HDWalletProvider(mnemonic, `https://rinkeby.infura.io/v3/${infuraKey}`),
       network_id: 4,       // Rinkeby's id

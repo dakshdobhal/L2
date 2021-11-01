@@ -25,6 +25,9 @@ it('lets user1 put up their star for sale', async() => {
     assert.equal(await instance.starsForSale.call(starId), starPrice);
 });
 
+
+
+
 it('lets user1 get the funds after the sale', async() => {
     let instance = await StarNotary.deployed();
     let user1 = accounts[1];
@@ -41,6 +44,9 @@ it('lets user1 get the funds after the sale', async() => {
     let value2 = Number(balanceOfUser1AfterTransaction);
     assert.equal(value1, value2);
 });
+
+
+
 
 it('lets user2 buy a star, if it is put up for sale', async() => {
     let instance = await StarNotary.deployed();

@@ -44,6 +44,7 @@ const App = {
       const{lookUptokenIdToStarInfo} = this.meta.menthods;
       const id = document.getElementById("starId").value;
 
+      //The status span element will reflect the information with a message
       const starName = await lookUptokenIdToStarInfo(id).call();
       App.setStatus("Star with ID : " + id + " is called "+starName);
   }
