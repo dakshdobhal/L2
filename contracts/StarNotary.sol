@@ -17,10 +17,14 @@ import "../node_modules/openzeppelin-solidity/contracts/token/ERC721/ERC721.sol"
     // name: Is a short name to your token
     // symbol: Is a short string like 'USD' -> 'American Dollar'
 
-    string public  tokenName = "Twinkling Star Token";
-    string public tokenSymbol = "TST";
+    //crating variable names as  name1 and symbol1 to avoid this error --> Overriding public state variable is missing "override" specifier
+    string public name1 = "Twinkling Star Token"; 
+    string public symbol1 = "TST";
 
-    constructor() ERC721("Twinkling Star Token", "TST") public { }
+
+    //adding this to get rid of error Contract "StarNotary" should be marked as abstract.
+    constructor() ERC721("Twinkling Star Token", "TST") public { } 
+
 
 
     // mapping the Star with the Owner Address
@@ -64,31 +68,32 @@ import "../node_modules/openzeppelin-solidity/contracts/token/ERC721/ERC721.sol"
     // Implement Task 1 lookUptokenIdToStarInfo
     function lookUptokenIdToStarInfo (uint _tokenId) public view returns (string memory) {
         //1. You should return the Star saved in tokenIdToStarInfo mapping
-
-        return tokenIdToStarInfo[_tokenId].name;
+        string memory ans = tokenIdToStarInfo[_tokenId].name;
+        return ans;
     }
 
     // Implement Task 1 Exchange Stars function
     function exchangeStars(uint256 _tokenId1, uint256 _tokenId2) public {
         //1. Passing to star tokenId you will need to check if the owner of _tokenId1 or _tokenId2 is the sender
-        require(msg.sender==ownerOf(_tokenId1) || msg.sender==ownerOf(_tokenId2),"Message Sender Is Not The Owner of Any One of The Tokens!");
+        require((msg.sender==ownerOf(_tokenId1) || msg.sender==ownerOf(_tokenId2)));
 
         //2. You don't have to check for the price of the token (star)
+    
 
         //3. Get the owner of the two tokens (ownerOf(_tokenId1), ownerOf(_tokenId1)
-        address owner1 = ownerOf(_tokenId1);
-        address owner2 = ownerOf(_tokenId2);
+        address user1 = ownerOf(_tokenId1);
+        address user2 = ownerOf(_tokenId2);
 
         //4. Use _transferFrom function to exchange the tokens.
-        transferFrom(owner1, owner2, _tokenId1);
-        transferFrom(owner2, owner1, _tokenId2);
+        transferFrom(user1, user2, _tokenId1);
+        transferFrom(user2, user1, _tokenId2);
 
     }
 
     // Implement Task 1 Transfer Stars
     function transferStar(address _to1, uint256 _tokenId) public {
         //1. Check if the sender is the ownerOf(_tokenId)
-        require(msg.sender == ownerOf(_tokenId),"Message Sender Is Not The TokenOwner!");
+        require(msg.sender == ownerOf(_tokenId));
 
         //2. Use the transferFrom(from, to, tokenId); function to transfer the Star
         transferFrom(msg.sender, _to1, _tokenId);
