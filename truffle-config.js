@@ -23,11 +23,11 @@
  */
 
 const HDWalletProvider = require('truffle-hdwallet-provider');
-const infuraKey = "7175b5e5d6c84c078d211ad6428d7278";
+const infuraKey = "";
 
 // const fs = require('fs');
 // const mnemonic = fs.readFileSync(".secret").toString().trim();
-const mnemonic = 'slender timber catch vintage park answer blast color enjoy forum daughter cram';
+const mnemonic = '';
 
 module.exports = {
   /**
